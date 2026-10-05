@@ -1,4 +1,4 @@
-print("=== SHUBH AI PROMPT LAB v2 ===")
+print("=== SHUBH AI PROMPT LAB v3.1 ===")
 print()
 
 print("1. Study")
@@ -7,25 +7,77 @@ print("3. Business")
 print("4. Content Creation")
 
 choice = input("\nChoose your category: ")
-topic = input("Enter your topic: ")
 
-if choice == "1":
-    print("\nStudy Prompt:")
-    print(f"Explain {topic} to a student in simple language, step by step, with examples.")
-
-elif choice == "2":
-    print("\nCoding Prompt:")
-    print(f"Act as a coding mentor. Explain {topic}, provide a solution, and explain the code step by step.")
-
-elif choice == "3":
-    print("\nBusiness Prompt:")
-    print(f"Analyze the business idea '{topic}', including customers, competition, risks, and opportunities.")
-
-elif choice == "4":
-    print("\nContent Prompt:")
-    print(f"Create an engaging content plan about '{topic}' with a strong hook, structure, and call to action.")
-
+if choice not in ["1", "2", "3", "4"]:
+    print("\n❌ Invalid category. Please choose 1, 2, 3, or 4.")
 else:
-    print("\nInvalid choice. Please select 1, 2, 3, or 4.")
+    topic = input("Enter your topic: ").strip()
+    level = input("Enter your level: ").strip()
+    language = input("Enter your preferred language: ").strip()
 
-print("\n[Prompt generated successfully]")
+    if not topic or not level or not language:
+        print("\n❌ Topic, level and language cannot be empty.")
+    else:
+        print("\n=== GENERATED PROMPT ===")
+
+        if choice == "1":
+            prompt = f"""
+Act as an expert teacher.
+
+Teach me about: {topic}
+
+Student level: {level}
+Preferred language: {language}
+
+Explain the topic step by step in simple language.
+Use clear examples and important points.
+If there are formulas, explain what they mean and when to use them.
+"""
+
+        elif choice == "2":
+            prompt = f"""
+Act as an expert programming mentor.
+
+Programming topic: {topic}
+
+Student level: {level}
+Preferred language: {language}
+
+Explain the concept step by step.
+Give a simple example and explain the code clearly.
+Also mention common mistakes beginners make.
+"""
+
+        elif choice == "3":
+            prompt = f"""
+Act as a startup and business mentor.
+
+Business topic: {topic}
+
+Experience level: {level}
+Preferred language: {language}
+
+Analyze the idea practically.
+Explain target customers, competition, advantages,
+risks, possible improvements and a simple action plan.
+"""
+
+        else:
+            prompt = f"""
+Act as an expert content strategist.
+
+Content topic: {topic}
+
+Creator level: {level}
+Preferred language: {language}
+
+Create a practical content plan with:
+- Strong hook
+- Main idea
+- Structure
+- Audience
+- Call to action
+"""
+
+        print(prompt)
+        print("\n[Prompt generated successfully]")
